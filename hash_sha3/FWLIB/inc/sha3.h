@@ -33,7 +33,7 @@ int sha3_update(sha3_ctx_t *c, const void *data, size_t len);
 int sha3_final(void *md, sha3_ctx_t *c);    // digest goes to md
 
 // compute a sha3 hash (md) of given byte length from "in"
-void *sha3(const void *in, size_t inlen, void *md, int mdlen);
+void *sha3(const void *in, size_t inlen, uint8_t *md, int mdlen);
 
 // SHAKE128 and SHAKE256 extensible-output functions
 #define shake128_init(c) sha3_init(c, 16)

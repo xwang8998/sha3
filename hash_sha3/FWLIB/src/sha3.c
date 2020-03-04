@@ -151,27 +151,34 @@ int sha3_final(void *md, sha3_ctx_t *c)
     for (i = 0; i < c->mdlen; i++) {
         ((uint8_t *) md)[i] = c->st.b[i];
     }
-		 for(i=0;i<64;i++)
-						 {
-						 printf("%d %X \n",i,((uint8_t *) md)[i]);
-							//result[i] =  ((uint8_t *) md)[i];
-							
-						 }
+//		 for(i=0;i<64;i++)
+//						 {
+//						 printf("%d %X \n",i,((uint8_t *) md)[i]);
+//							//result[i] =  ((uint8_t *) md)[i];
+//							
+//						 }
 						 
     return 1;
 }
 
 // compute a SHA-3 hash (md) of given byte length from "in"
 
-void *sha3(const void *in, size_t inlen, void *md, int mdlen)
+void *sha3(const void *in, size_t inlen, uint8_t *md, int mdlen)
 {
+	int32_t i;
     sha3_ctx_t sha3;
 
     sha3_init(&sha3, mdlen);
     sha3_update(&sha3, in, inlen);
     sha3_final(md, &sha3);
-
-    return md;
+	
+//	for(i=0;i<64;i++)
+//						 {
+//						 printf("%d %X \n",i,*(md+i));
+//							//result[i] =  ((uint8_t *) md)[i];
+//							
+//						 }
+    return (uint8_t *)md;
 }
 
 // SHAKE128 and SHAKE256 extensible-output functionality

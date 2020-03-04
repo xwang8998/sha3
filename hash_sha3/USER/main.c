@@ -107,7 +107,7 @@ int test_sha3()
 
     int i, fails, msg_len, sha_len,k;
     uint8_t sha[64], buf[64], msg[256];
-
+		uint8_t *result;
     fails = 0;
     for (i = 0; i < 4; i++) {
 
@@ -118,8 +118,15 @@ int test_sha3()
         msg_len = test_readhex(msg, testvec[i][0], sizeof(msg));
         sha_len = test_readhex(sha, testvec[i][1], sizeof(sha));
 				printf("[%d] SHA3-%d, len %d test \n", i, sha_len*8, msg_len);
-        sha3(msg, msg_len, buf, sha_len);
-				
+        result = sha3(msg, msg_len, buf, sha_len);
+				printf("result[%d]" ,i);
+				for(k=0;k<sha_len;k++)
+						 {
+						 printf("%X",*(result+k));
+							//result[i] =  ((uint8_t *) md)[i];
+							
+						 }
+				printf(" \n" );		 
 //        if (memcmp(sha, buf, sha_len) != 0) {
 //            fprintf(stderr, "[%d] SHA3-%d, len %d test FAILED.\n",i, sha_len * 8, msg_len);
 //            fails++;
